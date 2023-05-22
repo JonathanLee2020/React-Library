@@ -1,5 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
+import Highlight from "./Lawson/Highlight";
 
 function Highlights () {
     return (
@@ -10,15 +11,17 @@ function Highlights () {
                         Why choose <span className="purple">Liibrary</span>
                     </h2>
                     <div className="highlight__wrapper">
-                        <div className="highlight">
-                            <div className="highlight__img">
-                                <FontAwesomeIcon icon="bolt" />
-                            </div>
-                            <h3 className="highlight__subtitle">Easy and Quick</h3>
-                            <p className="highlight__para">
-                                Get immediate access books you have purchased
-                            </p>
-                        </div>
+                        <Highlight icon={<FontAwesomeIcon icon="bolt" />} 
+                            title="Easy and Quick"
+                            para="Get immediate access books you have purchased"
+                        />
+
+                        <Highlight icon={<FontAwesomeIcon icon="book-open" />} 
+                            title="10,000+ Books"
+                            para="Library has books available in all the categories that you love."/>
+                        <Highlight icon={<FontAwesomeIcon icon="bolt" />} 
+                            title="Affordable"
+                            para="Best-sellers at a fraction of the price!"/>
                     </div>
                 </div>
             </div>
