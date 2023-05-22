@@ -23,12 +23,18 @@ function Book({ book }) {
             </div>
             <div className="book__price">
                 {
+                    book.salePrice 
+                    ? <><span className="book__price--normal">${book.originalPrice.toFixed(2)}</span>
+                    ${book.salePrice.toFixed(2)}</>
+                    : 
+                    <>
+                    ${book.originalPrice.toFixed(2)}
+                    </>
                     
                 }
-                <>
-                    <span className="book__price--normal">${book.originalPrice}</span>
-                    ${book.salePrice}
-                </>
+                
+                    
+                
             </div>
         </div>
     )
