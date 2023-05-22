@@ -1,17 +1,17 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
-function Book () {
+function Book ({book}) {
     return (
         <div className="book">
             <a href="">
                 <figure className="book__img--wrapper">
-                    <img src="https://covers.openlibrary.org/b/id/8091016-L.jpg" alt="" />
+                    <img src={book.url} alt="" />
                 </figure>
             </a>
-            <div className="title">
+            <div className="book__title">
                 <a href="/" className="book__title--link">
-                    gaming😎
+                    {book.title}
                 </a>
             </div>
             <div className="book__ratings">

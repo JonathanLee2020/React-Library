@@ -97,3 +97,5 @@ export const books = [
     rating: 4.5,
   },
 ];
+
+export let gaming = ["ghostOfTsushima", "AssassinsCreedII", "PokemonDiamond"]
