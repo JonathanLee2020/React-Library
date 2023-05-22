@@ -1,7 +1,7 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
-function Book ({book}) {
+function Book({ book }) {
     return (
         <div className="book">
             <a href="">
@@ -15,15 +15,20 @@ function Book ({book}) {
                 </a>
             </div>
             <div className="book__ratings">
-                <FontAwesomeIcon icon="star"/>
-                <FontAwesomeIcon icon="star"/>
-                <FontAwesomeIcon icon="star"/>
-                <FontAwesomeIcon icon="star"/>
-                <FontAwesomeIcon icon="star-half-alt"/>
+                <FontAwesomeIcon icon="star" />
+                <FontAwesomeIcon icon="star" />
+                <FontAwesomeIcon icon="star" />
+                <FontAwesomeIcon icon="star" />
+                <FontAwesomeIcon icon="star-half-alt" />
             </div>
             <div className="book__price">
-                <span className="book__price--normal">$15.00</span>
-                $10.00
+                {
+                    
+                }
+                <>
+                    <span className="book__price--normal">${book.originalPrice}</span>
+                    ${book.salePrice}
+                </>
             </div>
         </div>
     )
