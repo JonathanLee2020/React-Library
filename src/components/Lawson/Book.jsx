@@ -15,14 +15,12 @@ function Book({ book }) {
                 </a>
             </div>
             <div className="book__ratings">
-                {/* <FontAwesomeIcon icon="star" />
-                <FontAwesomeIcon icon="star" />
-                <FontAwesomeIcon icon="star" />
-                <FontAwesomeIcon icon="star" />
-                <FontAwesomeIcon icon="star-half-alt" /> */}
                 {
                     //fill an empty array of specified length with a dummy variable
-                    new Array(5).fill(0).map((element, index) => <FontAwesomeIcon icon="star" />)
+                    new Array(Math.floor(book.rating)).fill(0).map((element, index) => <FontAwesomeIcon icon="star" />)
+                }
+                {
+                    Number.isInteger(book.rating)  ? '' : <FontAwesomeIcon icon="star-half-alt" key = {book.index} />
                 }
             </div>
             <div className="book__price">
