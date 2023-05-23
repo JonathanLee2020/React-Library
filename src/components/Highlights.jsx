@@ -8,7 +8,7 @@ function Highlights () {
             <div className="container">
                 <div className="row">
                     <h2 className="section__title">
-                        Why choose <span className="purple">Liibrary</span>
+                        Why choose Ohio gaming<span className="purple">Liibrary</span>
                     </h2>
                     <div className="highlight__wrapper">
                         <Highlight icon={<FontAwesomeIcon icon="bolt" />} 
