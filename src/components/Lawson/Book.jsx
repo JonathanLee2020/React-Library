@@ -15,11 +15,15 @@ function Book({ book }) {
                 </a>
             </div>
             <div className="book__ratings">
+                {/* <FontAwesomeIcon icon="star" />
                 <FontAwesomeIcon icon="star" />
                 <FontAwesomeIcon icon="star" />
                 <FontAwesomeIcon icon="star" />
-                <FontAwesomeIcon icon="star" />
-                <FontAwesomeIcon icon="star-half-alt" />
+                <FontAwesomeIcon icon="star-half-alt" /> */}
+                {
+                    //fill an empty array of specified length with a dummy variable
+                    new Array(5).fill(0).map((element, index) => <FontAwesomeIcon icon="star" />)
+                }
             </div>
             <div className="book__price">
                 {
