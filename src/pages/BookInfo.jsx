@@ -5,7 +5,7 @@ import Rating from '../components/Lawson/Rating'
 import Price from '../components/Lawson/Price'
 import Book from '../components/Lawson/Book'
 
-export default function BookInfo({books, addItemToCart}) {
+export default function BookInfo({books, addItemToCart, cart}) {
     let { id } = useParams();
     const book = books.find((book => +book.id == +id));
     console.log(book);
@@ -15,11 +15,10 @@ export default function BookInfo({books, addItemToCart}) {
         setAdded(true);
         addItemToCart(book)
     }
-
-    function bookExistsOnCart() {
-        
+    
+    function bookExistsonCart () {
+        return cart.find(book => book.id === +id)
     }
-
 
   return (
     <div id="books__body">
@@ -57,7 +56,10 @@ export default function BookInfo({books, addItemToCart}) {
                                     Lorem ipsum, dolor sit amet consectetur adipisicing elit. Possimus iste, a quia itaque voluptatem quam voluptates corporis consequatur sequi suscipit sint nesciunt explicabo expedita amet, tempore debitis quibusdam commodi doloribus.
                                 </p>
                         </div>
-                            {added ? (<button className="btn">Checkout</button>
+                            {bookExistsonCart() ? (
+                            <Link to={`/cart`}>
+                            <button className="btn">Checkout</button>
+                            </Link>
                                 ) : (
                                 <button className="btn" onClick={() => addBookToCart(book)}>
                                     Add to Cart</button>
