@@ -13,7 +13,7 @@ import { books } from "./data"
 import BookInfo from './pages/BookInfo';
 import { Link } from 'react-router-dom';
 import Cart from "./pages/Cart"
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 
 function App() {
@@ -21,10 +21,26 @@ function App() {
 
   //we want the functionality to begin in cart when we click a button on a different page (bookinfo)
 
-  function addToCart () {
-    console.log("add to cart");
-
+  function addItemToCart(book) {
+    const dupeItem = cart.find((item) => item.id === book.id);
+    setCart((oldCart) =>
+      dupeItem
+        ? [
+            ...oldCart.map((item) => {
+              return item.id === dupeItem.id
+                ? {
+                    ...item,
+                    quantity: item.quantity + 1,
+                  }
+                : item;
+            }),
+          ]
+        : [...oldCart, { ...book, quantity: 1 }]
+    );
   }
+  useEffect(() => {
+    console.log(cart);
+  }, [cart])
 
   return (
     <Router>
@@ -32,7 +48,7 @@ function App() {
         <Nav />
         <Route path="/" exact component={Home} />
         <Route path="/books" exact render={() => <Books  books={books}/>} />
-        <Route path="/books/:id" render={() => <BookInfo  books={books} addToCart={addToCart}/> } />
+        <Route path="/books/:id" render={() => <BookInfo  books={books} addItemToCart={addItemToCart}/> } />
         <Route path="/cart" render={() => <Cart  books={books}/>} />
         <Footer />
         
