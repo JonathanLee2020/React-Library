@@ -3,10 +3,11 @@ import React from 'react'
 import { Link, useParams } from 'react-router-dom/cjs/react-router-dom.min'
 import Rating from '../components/Lawson/Rating'
 import Price from '../components/Lawson/Price'
+import Book from '../components/Lawson/Book'
 
 export default function BookInfo({books}) {
     let { id } = useParams();
-    let book = books.find((book => book.id === id));
+    const book = books.find((book => +book.id == +id));
     console.log(book);
   return (
     <div id="books__body">
@@ -23,22 +24,24 @@ export default function BookInfo({books}) {
                     </div>
                     <div className="book__selected">
                         <figure className="book__selected--figure">
-                            <img src="https://covers.openlibrary.org/b/id/8091016-L.jpg" alt="" className="book__selected--img" />
+                            <img 
+                            src={book.url}
+                            /> 
                         </figure>
                         <div className="book__selected--description">
-                            <h2 className="book__selected--title">Crack the Coding Interview</h2>
-                            <Rating rating="4.5"/>
+                            <h2 className="book__selected--title">{book.title}</h2>
+                            <Rating rating={book.rating}/>
                             <div className="book__seleted--price">
-                                <Price originalPrice={4.50} salePrice={3.50}/>
+                                <Price originalPrice={book.originalPrice} salePrice={book.salePrice}/>
                             </div>
                             <div className="book__summary">
                                 <div className="book__summary--title">
                                     Summary
                                 </div>
-                                <p className="book__summary__para">
+                                <p className="book__summary--para">
                                     Lorem ipsum, dolor sit amet consectetur adipisicing elit. Possimus iste, a quia itaque voluptatem quam voluptates corporis consequatur sequi suscipit sint nesciunt explicabo expedita amet, tempore debitis quibusdam commodi doloribus.
                                 </p>
-                                <p className="book__summary__para">
+                                <p className="book__summary--para">
                                     Lorem ipsum, dolor sit amet consectetur adipisicing elit. Possimus iste, a quia itaque voluptatem quam voluptates corporis consequatur sequi suscipit sint nesciunt explicabo expedita amet, tempore debitis quibusdam commodi doloribus.
                                 </p>
                             </div>
@@ -56,6 +59,13 @@ export default function BookInfo({books}) {
                             Recommended Books
                         </h2>
                     </div>
+                    <div className="books">
+                        {
+                            books.filter(book => book.rating === 5 && +book.id !== +id).slice(0, 4)
+                            .map(book => <Book book={book} key = {book.id} />)
+                        }
+                    </div>
+                    
                 </div>
             </div>
         </main>
