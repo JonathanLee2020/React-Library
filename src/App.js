@@ -38,6 +38,46 @@ function App() {
         : [...oldCart, { ...book, quantity: 1 }]
     );
   }
+
+  function updateCart(item, newQuantity) {
+    setCart((oldCart) =>
+      oldCart.map((oldItem) => {
+        if (oldItem.id === item.id) {
+          return {
+            ...oldItem,
+            quantity: newQuantity,
+          };
+        } else {
+          return oldItem;
+        }
+      })
+    );
+  }
+
+  function numberOfItems() {
+    let counter = 0;
+    cart.forEach((item) => {
+      counter += +item.quantity;
+    });
+    return counter;
+  }
+
+  function removeItem(item) {
+    setCart((oldCart) => oldCart.filter((cartItem) => cartItem.id !== item.id));
+  }
+
+  function calcPrices() {
+    let total = 0;
+    cart.forEach((item) => {
+      total += (item.salePrice || item.originalPrice) * item.quantity;
+    });
+    return {
+      subtotal: total * 0.9,
+      tax: total * 0.1,
+      total,
+    };
+  }
+
   useEffect(() => {
     console.log(cart);
   }, [cart])
@@ -45,11 +85,18 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <Nav />
+        <Nav numberOfItems = {numberOfItems()}/>
         <Route path="/" exact component={Home} />
         <Route path="/books" exact render={() => <Books  books={books}/>} />
         <Route path="/books/:id" render={() => <BookInfo  books={books} addItemToCart={addItemToCart} cart = {cart}/> } />
-        <Route path="/cart" render={() => <Cart  books={books} cart={cart}/>} />
+        <Route path="/cart" render={() => (
+        <Cart 
+          books={books} 
+          cart={cart}
+          removeItem={removeItem}
+          totals={calcPrices()}
+         />
+         )} />
         <Footer />
         
       </div>
